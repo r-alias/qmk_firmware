@@ -33,7 +33,7 @@ endef
 $(foreach OUTPUT,$(OUTPUTS),$(eval $(OUTPUT)_OBJ +=$(call OBJ_FROM_SRC,$(OUTPUT))))
 
 # Define a list of all objects
-OBJ := $(foreach OUTPUT,$(OUTPUTS),$($(OUTPUT)_OBJ))
+OBJ := $(foreach OUTPUT,$(OUTPUTS),$($(OUTPUT)_OBJ)) $(EXTRAOBJ)
 NO_LTO_OBJ := $(filter %.a,$(OBJ))
 
 MASTER_OUTPUT := $(firstword $(OUTPUTS))
@@ -91,7 +91,9 @@ ifeq ("$(shell echo "int main(){}" | $(CC) -fdiagnostics-color -x c - -o /dev/nu
 endif
 endif
 CFLAGS += -Wall
-CFLAGS += -Wstrict-prototypes
+ifneq ($(PLATFORM), NRF_SDK)
+    CFLAGS += -Wstrict-prototypes
+endif
 ifneq ($(strip $(ALLOW_WARNINGS)), yes)
     CFLAGS += -Werror
 endif
@@ -286,7 +288,7 @@ gccversion :
 	if [ ! -z "$(DFU_SUFFIX_ARGS)" ]; then \
 		$(DFU_SUFFIX) $(DFU_SUFFIX_ARGS) -a $(BUILD_DIR)/$(TARGET).bin 1>/dev/null ;\
 	fi
-	$(COPY) $(BUILD_DIR)/$(TARGET).bin $(TARGET).bin;
+	#$(COPY) $(BUILD_DIR)/$(TARGET).bin $(TARGET).bin;
 
 BEGIN = gccversion sizebefore
 

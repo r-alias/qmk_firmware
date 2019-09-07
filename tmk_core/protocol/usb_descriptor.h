@@ -49,6 +49,9 @@
 #    include "hal.h"
 #endif
 
+#ifdef PROTOCOL_NRF
+#    include "nrf_usbd.h"
+#endif
 /*
  * USB descriptor structure
  */
@@ -232,6 +235,8 @@ enum usb_endpoints {
 #elif defined(PROTOCOL_CHIBIOS)
 // ChibiOS gives us number of available user endpoints, not control
 #    define MAX_ENDPOINTS USB_MAX_ENDPOINTS
+#elif defined(PROTOCOL_NRF)
+#    define MAX_ENDPOINTS NRF_USBD_EPOUT_CNT
 #endif
 
 // TODO - ARM_ATSAM

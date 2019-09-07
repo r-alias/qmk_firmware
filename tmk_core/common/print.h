@@ -29,7 +29,7 @@
 #include <stdbool.h>
 #include "util.h"
 
-#if defined(PROTOCOL_CHIBIOS) || defined(PROTOCOL_ARM_ATSAM)
+#if defined(PROTOCOL_CHIBIOS) || defined(PROTOCOL_ARM_ATSAM) || defined(PROTOCOL_NRF)
 #    define PSTR(x) x
 #endif
 
@@ -127,6 +127,34 @@ extern "C"
 #            define uprintf(fmt, ...) xprintf(fmt, ##__VA_ARGS__)
 
 #        endif /* USER_PRINT / NORMAL PRINT */
+#   elif defined(PROTOCOL_NRF)
+
+#       include "nrf/printf.h"
+#       include "nrf_log.h"
+
+#       ifdef USER_PRINT /* USER_PRINT */
+
+    // Remove normal print defines
+#           define print(s)
+#           define println(s)
+#           define xprintf(fmt, ...)
+
+    // Create user print defines
+#           define uprint(s)    tfp_printf(s)
+#           define uprintln(s)  tfp_printf(s "\r\n")
+#           define uprintf      tfp_printf
+
+#       else /* NORMAL PRINT */
+
+    // Create user & normal print defines
+#           define print(s)     NRF_LOG_INFO(s)
+#           define println(s)   NRF_LOG_INFO(s "\r\n")
+#           define xprintf      NRF_LOG_INFO
+#           define uprint(s)    NRF_LOG_INFO(s)
+#           define uprintln(s)  NRF_LOG_INFO(s "\r\n")
+#           define uprintf      NRF_LOG_INFO
+
+#       endif /* USER_PRINT / NORMAL PRINT */
 
 #    elif defined(__arm__) /* __arm__ */
 
