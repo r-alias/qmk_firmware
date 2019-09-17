@@ -22,4 +22,7 @@
   #define SSD1306OLED
 #endif
 
+#define ENCODERS_PAD_A { PIN12 }
+#define ENCODERS_PAD_B { PIN13 }
+
 #endif /* MASTER_CONFIG_H_ */

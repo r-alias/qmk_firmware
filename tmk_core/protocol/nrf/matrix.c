@@ -43,6 +43,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  #include "pin_assign.h"
 #endif
 
+#ifdef ENCODER_ENABLE
+#    include "encoder.h"
+#endif
+
 #include <stdbool.h>
 const uint32_t row_pins[THIS_DEVICE_ROWS] = MATRIX_ROW_PINS;
 const uint32_t col_pins[THIS_DEVICE_COLS] = MATRIX_COL_PINS;
@@ -180,6 +184,9 @@ void matrix_init(void) {
 #endif
 #if defined(USE_AS_I2C_SLAVE)
   i2cs_init();
+#endif
+#ifdef ENCODER_ENABLE
+  encoder_init();
 #endif
   matrix_init_user();
 }
@@ -413,6 +420,9 @@ uint8_t matrix_scan(void)
 {
   uint8_t res = matrix_scan_impl(matrix);
   matrix_scan_quantum();
+#ifdef ENCODER_ENABLE
+  encoder_read();
+#endif
   return res;
 }
 

@@ -7,6 +7,7 @@ LED_UNDERGLOW_ENABLE = no   # LED underglow (Enable WS2812 RGB underlight.)
 LED_ANIMATIONS = yes        # LED animations
 OLED_ENABLE = yes            # OLED_ENABLE
 LOCAL_GLCDFONT = yes         # use each keymaps "helixfont.h" insted of "common/glcdfont.c"
+ENCODER_ENABLE = yes
 
 define HELIX_CUSTOMISE_MSG
   $(info Helix customize)

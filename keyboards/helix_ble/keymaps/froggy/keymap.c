@@ -847,3 +847,25 @@ void iota_gfx_task_user(void) {
 }
 #endif
 #endif
+
+#ifdef ENCODER_ENABLE
+void tap_code(uint8_t code) {
+    register_code(code);
+    if (code == KC_CAPS) {
+        wait_ms(80);
+    } else {
+        wait_ms(0);
+    }
+    unregister_code(code);
+}
+
+void encoder_update_user(uint8_t index, bool clockwise) {
+  if (index == 0 ) { /* Second encoder from slave */
+    if (clockwise) {
+      tap_code(KC_UP);
+    } else {
+      tap_code(KC_DOWN);
+    }
+  }
+}
+#endif

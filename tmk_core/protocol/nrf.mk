@@ -54,3 +54,7 @@ ifeq ($(strip $(MIDI_ENABLE)), yes)
   include $(TMK_PATH)/protocol/midi.mk
 endif
 
+ifeq ($(strip $(ENCODER_ENABLE)), yes)
+    SRC += $(NRF_DIR)/$(NRF_VER_DIR)/encoder.c
+    OPT_DEFS += -DENCODER_ENABLE
+endif

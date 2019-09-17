@@ -403,6 +403,7 @@ NRFLIBSRC += \
   $(NRFSDK_ROOT)/components/libraries/util/app_error_weak.c \
   $(NRFSDK_ROOT)/components/libraries/scheduler/app_scheduler.c \
   $(NRFSDK_ROOT)/components/libraries/timer/app_timer.c \
+  $(NRFSDK_ROOT)/components/libraries/timer/experimental/drv_rtc.c \
   $(NRFSDK_ROOT)/components/libraries/util/app_util_platform.c \
   $(NRFSDK_ROOT)/components/libraries/crc16/crc16.c \
   $(NRFSDK_ROOT)/components/libraries/fds/fds.c \
@@ -424,6 +425,7 @@ NRFLIBSRC += \
   $(NRFSDK_ROOT)/integration/nrfx/legacy/nrf_drv_uart.c \
   $(NRFSDK_ROOT)/integration/nrfx/legacy/nrf_drv_power.c \
   $(NRFSDK_ROOT)/integration/nrfx/legacy/nrf_drv_twi.c \
+  $(NRFSDK_ROOT)/integration/nrfx/legacy/nrf_drv_ppi.c \
   $(NRFSDK_ROOT)/modules/nrfx/drivers/src/nrfx_gpiote.c \
   $(NRFSDK_ROOT)/modules/nrfx/drivers/src/nrfx_clock.c \
   $(NRFSDK_ROOT)/modules/nrfx/drivers/src/nrfx_power.c \
@@ -437,6 +439,9 @@ NRFLIBSRC += \
   $(NRFSDK_ROOT)/modules/nrfx/drivers/src/nrfx_twim.c \
   $(NRFSDK_ROOT)/modules/nrfx/drivers/src/nrfx_twis.c \
   $(NRFSDK_ROOT)/modules/nrfx/drivers/src/nrfx_pwm.c \
+  $(NRFSDK_ROOT)/modules/nrfx/drivers/src/nrfx_qdec.c \
+  $(NRFSDK_ROOT)/modules/nrfx/drivers/src/nrfx_rtc.c \
+  $(NRFSDK_ROOT)/modules/nrfx/drivers/src/nrfx_ppi.c \
   $(NRFSDK_ROOT)/external/segger_rtt/SEGGER_RTT.c \
   $(NRFSDK_ROOT)/external/segger_rtt/SEGGER_RTT_Syscalls_GCC.c \
   $(NRFSDK_ROOT)/external/segger_rtt/SEGGER_RTT_printf.c \
